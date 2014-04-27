@@ -19,6 +19,7 @@ Dateien  = Zu bearbeitende Dateien
 -overwrite = Ausgangsdatei ueberschreiben
 
 **Anmerkungen**
+
 Soll nach Metazeichen gesucht werden, so sind diese mit \ zu maskieren.
 
 Regular Expression Metazeichen: * + ? . ( ) [ ] { } \ / | ^ $
