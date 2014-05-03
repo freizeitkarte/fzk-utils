@@ -3,6 +3,7 @@
 #
 # Programm : Purge-Images (purge_images.pl)
 # Version  : 0.1.0 - 2014/04/24
+# Version  : 0.1.1 - 2014/05/03 Hilfetext angepasst
 # Autor    : Klaus Tockloth
 #
 # Anmerkungen:
@@ -36,7 +37,7 @@ my $EMPTY = q{};
 my ( $appbasename, $appdirectory, $appsuffix ) = fileparse ( $PROGRAM_NAME, qr/\.[^.]*/ );
 my $programm_name      = basename ( $PROGRAM_NAME );
 my $programm_info      = "Bereinigung nicht referenzierter Images";
-my $programm_version   = '0.1.0 - 2014/04/24';
+my $programm_version   = '0.1.1 - 2014/05/03';
 my $programm_directory = getcwd ();
 
 printf {*STDOUT} ( "\n$programm_name - $programm_info, Rel. $programm_version\n" );
@@ -119,8 +120,8 @@ sub show_help {
           . "Dateien    = zu verifizierende Dateien (html, css, ...)\n\n"
           . "Beispiele\n"
           . "=========\n"
-          . "perl $programm_name  -imagedir=\"/fzk.de/android/images/*\"  \"fzk.de/android/*\"  \"fzk.de/android/de/*\"\n"
-          . "perl $programm_name  -imagedir=\"/fzk.de/images/*\"  \"/fzk.de/*\"  \"/fzk.de/en/*\"  \"/fzk.de/de/*\"\n"
+          . "perl $programm_name  -imagedir=\"~/freizeitkarte-osm.de/android/images/*\"  \"~/freizeitkarte-osm.de/android/*\"  \"~/freizeitkarte-osm.de/android/de/*\"\n"
+          . "perl $programm_name  -imagedir=\"~/freizeitkarte-osm.de/images/*\"  \"~/freizeitkarte-osm.de/*\"  \"~/freizeitkarte-osm.de/en/*\"  \"~/freizeitkarte-osm.de/de/*\"\n"
           . "\n" );
 
     exit ( 1 );
