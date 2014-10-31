@@ -22,27 +22,12 @@ echo "============================================="
 
 PBFPREFIX=$(basename $POLYFILE .poly)
 
-phyghtmap --step=10                         \
-          --osm-version=0.6                 \
-          --jobs=1                          \
-          --polygon=$POLYFILE               \
-          --line-cat=200,100                \
-          --viewfinder-mask=3               \
-          --start-node-id=$NID              \
-          --start-way-id=$WID               \
-          --max-nodes-per-tile=0            \
-          --pbf                             \
-          --write-timestamp                 \
-          --output-prefix=./pbf/ele_10_100_200/Hoehendaten_${1}
-		  
-mv ./pbf/ele_10_100_200/Hoehendaten_${1}*.osm.pbf ./pbf/ele_10_100_200/Hoehendaten_${1}.osm.pbf
-
 phyghtmap --step=25                         \
           --osm-version=0.6                 \
           --jobs=1                          \
           --polygon=$POLYFILE               \
           --line-cat=500,250                \
-          --viewfinder-mask=3               \
+          --source=view1,srtm1,view3,srtm3  \
           --start-node-id=$NID              \
           --start-way-id=$WID               \
           --max-nodes-per-tile=0            \
@@ -51,4 +36,19 @@ phyghtmap --step=25                         \
           --output-prefix=./pbf/ele_25_250_500/Hoehendaten_${1}
 
 mv ./pbf/ele_25_250_500/Hoehendaten_${1}*.osm.pbf ./pbf/ele_25_250_500/Hoehendaten_${1}.osm.pbf
+
+phyghtmap --step=10                         \
+          --osm-version=0.6                 \
+          --jobs=1                          \
+          --polygon=$POLYFILE               \
+          --line-cat=200,100                \
+          --source=view1,srtm1,view3,srtm3  \
+          --start-node-id=$NID              \
+          --start-way-id=$WID               \
+          --max-nodes-per-tile=0            \
+          --pbf                             \
+          --write-timestamp                 \
+          --output-prefix=./pbf/ele_10_100_200/Hoehendaten_${1}
+		  
+mv ./pbf/ele_10_100_200/Hoehendaten_${1}*.osm.pbf ./pbf/ele_10_100_200/Hoehendaten_${1}.osm.pbf
 
