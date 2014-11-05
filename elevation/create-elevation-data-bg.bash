@@ -37,6 +37,10 @@ phyghtmap --step=25                         \
           --write-timestamp                 \
           --output-prefix=./pbf/ele_25_250_500/Hoehendaten_${1}
 
+if [ -f ./pbf/ele_25_250_500/Hoehendaten_${1}.osm.pbf ]
+then
+   rm ./pbf/ele_25_250_500/Hoehendaten_${1}.osm.pbf
+fi
 mv ./pbf/ele_25_250_500/Hoehendaten_${1}*.osm.pbf ./pbf/ele_25_250_500/Hoehendaten_${1}.osm.pbf
 
 echo 
@@ -55,6 +59,10 @@ phyghtmap --step=10                         \
           --write-timestamp                 \
           --output-prefix=./pbf/ele_10_100_200/Hoehendaten_${1}
 		  
+if [ -f ./pbf/ele_10_100_200/Hoehendaten_${1}.osm.pbf ]
+then
+   rm ./pbf/ele_10_100_200/Hoehendaten_${1}.osm.pbf
+fi
 mv ./pbf/ele_10_100_200/Hoehendaten_${1}*.osm.pbf ./pbf/ele_10_100_200/Hoehendaten_${1}.osm.pbf
 
 echo
