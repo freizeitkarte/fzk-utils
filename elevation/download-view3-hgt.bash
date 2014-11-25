@@ -21,4 +21,4 @@ phyghtmap --step=25                         \
           --output-prefix=xxxxx/xxxx        \
     | grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' > $LOGFILE
 
-cat $LOGFILE | zip $ZIPFILE -@
+cat $LOGFILE | zip -j $ZIPFILE -@
