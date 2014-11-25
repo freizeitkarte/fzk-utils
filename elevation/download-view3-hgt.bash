@@ -1,11 +1,14 @@
 #!/bin/bash
 
 POLYFILE="$1"
-LOGFILE="logs/`basename $1`.log"
+MAPNAME="`basename $POLYFILE .poly`"
+LOGFILE="logs/$MAPNAME-hgt.log"
+ZIPFILE="zips/$MAPNAME-hgt.zip"
 
-echo > $LOGFILE
-echo "$POLYFILE" >> $LOGFILE
-echo "=============================================" >> $LOGFILE
+
+#echo > $LOGFILE
+#echo "$POLYFILE" >> $LOGFILE
+#echo "=============================================" >> $LOGFILE
 
 phyghtmap --step=25                         \
           --osm-version=0.6                 \
@@ -16,5 +19,6 @@ phyghtmap --step=25                         \
           --pbf                             \
           --write-timestamp                 \
           --output-prefix=xxxxx/xxxx        \
-    | grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE
+    | grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' > $LOGFILE
 
+cat $LOGFILE | zip $ZIPFILE -@
