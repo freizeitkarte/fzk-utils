@@ -5,6 +5,8 @@ POLYFILE="./poly/$MAPNAME.poly"
 ELE10="ele_10_100_200"
 ELE20="ele_20_100_500"
 ELE25="ele_25_250_500"
+DATASRC="view1,view3"
+#DATASRC="view1,view3,SRTM1,SRTM3"
 
 if [ -z "$2" ]
 then
@@ -31,7 +33,7 @@ phyghtmap --step=20                         \
           --jobs=1                          \
           --polygon=$POLYFILE               \
           --line-cat=500,100                \
-          --source=view1,view3,srtm1,srtm3  \
+          --source=${DATASRC}               \
           --start-node-id=$NID              \
           --start-way-id=$WID               \
           --max-nodes-per-tile=0            \
@@ -54,7 +56,7 @@ phyghtmap --step=25                         \
           --jobs=1                          \
           --polygon=$POLYFILE               \
           --line-cat=500,250                \
-          --source=view1,view3,srtm1,srtm3  \
+          --source=${DATASRC}               \
           --start-node-id=$NID              \
           --start-way-id=$WID               \
           --max-nodes-per-tile=0            \
@@ -78,7 +80,7 @@ phyghtmap --step=10                         \
           --jobs=1                          \
           --polygon=$POLYFILE               \
           --line-cat=200,100                \
-          --source=view1,view3,srtm1,srtm3  \
+          --source=${DATASRC}               \
           --start-node-id=$NID              \
           --start-way-id=$WID               \
           --max-nodes-per-tile=0            \
