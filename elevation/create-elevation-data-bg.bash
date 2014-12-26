@@ -5,8 +5,8 @@ POLYFILE="./poly/$MAPNAME.poly"
 ELE10="ele_10_100_200"
 ELE20="ele_20_100_500"
 ELE25="ele_25_250_500"
-DATASRC="view1,view3"
-#DATASRC="view1,view3,srtm1,srtm3"
+#DATASRC="view1,view3"
+DATASRC="view1,view3,srtm1,srtm3"
 
 if [ -z "$2" ]
 then
