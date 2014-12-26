@@ -1,14 +1,10 @@
 #!/bin/bash
 
-POLYFILE="./poly/$1.poly"
-
-MAPNAME="`basename $POLYFILE .poly`"
-
+MAPNAME="$1"
+POLYFILE="./poly/$MAPNAME.poly"
 ELE10="ele_10_100_200"
 ELE20="ele_20_100_500"
 ELE25="ele_25_250_500"
-
-
 
 if [ -z "$2" ]
 then
@@ -27,9 +23,6 @@ fi
 echo 
 echo "$POLYFILE"
 echo "============================================="
-
-PBFPREFIX=$(basename $POLYFILE .poly)
-
 echo "20/100/500 m"
 echo "---------------------------------------------"
 LOGFILE="logs/$MAPNAME-ele20.log"
@@ -44,13 +37,13 @@ phyghtmap --step=20                         \
           --max-nodes-per-tile=0            \
           --pbf                             \
           --write-timestamp                 \
-          --output-prefix=./pbf/$ELE20/Hoehendaten_${1} | tee $LOGFILE
+          --output-prefix=./pbf/${ELE20}/Hoehendaten_${MAPNAME} | tee ${LOGFILE}
 
-if [ -f ./pbf/$ELE20/Hoehendaten_${1}.osm.pbf ]
+if [ -f ./pbf/$ELE20/Hoehendaten_${MAPNAME}.osm.pbf ]
 then
-   rm ./pbf/$ELE20/Hoehendaten_${1}.osm.pbf
+   rm ./pbf/$ELE20/Hoehendaten_${MAPNAME}.osm.pbf
 fi
-mv ./pbf/$ELE20/Hoehendaten_${1}*.osm.pbf ./pbf/$ELE20/Hoehendaten_${1}.osm.pbf
+mv ./pbf/$ELE20/Hoehendaten_${MAPNAME}*.osm.pbf ./pbf/${ELE20}/Hoehendaten_${MAPNAME}.osm.pbf
 
 echo
 echo "25/250/500 m"
@@ -67,13 +60,13 @@ phyghtmap --step=25                         \
           --max-nodes-per-tile=0            \
           --pbf                             \
           --write-timestamp                 \
-          --output-prefix=./pbf/$ELE25/Hoehendaten_${1} | tee $LOGFILE
+          --output-prefix=./pbf/$ELE25/Hoehendaten_${MAPNAME} | tee ${LOGFILE}
 
-if [ -f ./pbf/$ELE25/Hoehendaten_${1}.osm.pbf ]
+if [ -f ./pbf/$ELE25/Hoehendaten_${MAPNAME}.osm.pbf ]
 then
-   rm ./pbf/$ELE25/Hoehendaten_${1}.osm.pbf
+   rm ./pbf/$ELE25/Hoehendaten_${MAPNAME}.osm.pbf
 fi
-mv ./pbf/$ELE25/Hoehendaten_${1}*.osm.pbf ./pbf/$ELE25/Hoehendaten_${1}.osm.pbf
+mv ./pbf/$ELE25/Hoehendaten_${MAPNAME}*.osm.pbf ./pbf/$ELE25/Hoehendaten_${MAPNAME}.osm.pbf
 
 
 echo 
@@ -91,12 +84,12 @@ phyghtmap --step=10                         \
           --max-nodes-per-tile=0            \
           --pbf                             \
           --write-timestamp                 \
-          --output-prefix=./pbf/$ELE10/Hoehendaten_${1} | tee $LOGFILE
+          --output-prefix=./pbf/$ELE10/Hoehendaten_${MAPNAME} | tee ${LOGFILE}
 		  
-if [ -f ./pbf/$ELE10/Hoehendaten_${1}.osm.pbf ]
+if [ -f ./pbf/$ELE10/Hoehendaten_${MAPNAME}.osm.pbf ]
 then
-   rm ./pbf/$ELE10/Hoehendaten_${1}.osm.pbf
+   rm ./pbf/$ELE10/Hoehendaten_${MAPNAME}.osm.pbf
 fi
-mv ./pbf/$ELE10/Hoehendaten_${1}*.osm.pbf ./pbf/$ELE10/Hoehendaten_${1}.osm.pbf
+mv ./pbf/$ELE10/Hoehendaten_${MAPNAME}*.osm.pbf ./pbf/$ELE10/Hoehendaten_${MAPNAME}.osm.pbf
 
 echo

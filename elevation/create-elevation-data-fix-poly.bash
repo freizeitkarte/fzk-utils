@@ -2,8 +2,8 @@
 
 for POLYFILE in $(find ./poly -name *.poly )
 do
-   PBFPREFIX=$(basename $POLYFILE .poly)
+   MAPNAME=$(basename $POLYFILE .poly)
 
-   ./create-elevation-data-bg.bash $PBFPREFIX
+   ./create-elevation-data-bg.bash $MAPNAME
 
 done
