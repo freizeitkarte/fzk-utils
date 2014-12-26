@@ -2,6 +2,8 @@
 
 POLYFILE="./poly/$1.poly"
 
+MAPNAME="`basename $POLYFILE .poly`"
+
 ELE10="ele_10_100_200"
 ELE20="ele_20_100_500"
 ELE25="ele_25_250_500"
