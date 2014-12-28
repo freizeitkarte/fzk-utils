@@ -39,7 +39,8 @@ phyghtmap --step=20                         \
           --max-nodes-per-tile=0            \
           --pbf                             \
           --write-timestamp                 \
-          --output-prefix=./pbf/${ELE20}/Hoehendaten_${MAPNAME} | tee ${LOGFILE}
+          --output-prefix=./pbf/${ELE20}/Hoehendaten_${MAPNAME} | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' > $LOGFILE)
+
 
 if [ -f ./pbf/${ELE20}/Hoehendaten_${MAPNAME}.osm.pbf ]
 then
@@ -62,7 +63,7 @@ phyghtmap --step=25                         \
           --max-nodes-per-tile=0            \
           --pbf                             \
           --write-timestamp                 \
-          --output-prefix=./pbf/${ELE25}/Hoehendaten_${MAPNAME} | tee ${LOGFILE}
+          --output-prefix=./pbf/${ELE25}/Hoehendaten_${MAPNAME} | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' > $LOGFILE)
 
 if [ -f ./pbf/${ELE25}/Hoehendaten_${MAPNAME}.osm.pbf ]
 then
@@ -86,7 +87,7 @@ phyghtmap --step=10                         \
           --max-nodes-per-tile=0            \
           --pbf                             \
           --write-timestamp                 \
-          --output-prefix=./pbf/${ELE10}/Hoehendaten_${MAPNAME} | tee ${LOGFILE}
+          --output-prefix=./pbf/${ELE10}/Hoehendaten_${MAPNAME} | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' > $LOGFILE)
 		  
 if [ -f ./pbf/${ELE10}/Hoehendaten_${MAPNAME}.osm.pbf ]
 then
