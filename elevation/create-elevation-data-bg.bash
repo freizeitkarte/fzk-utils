@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# Default Configurations (adoptable)
+# ===========================================
+# Datasources (view1,view3,srtm1,srtm3)
+# -------------------------------------
+DATASRC="view1"
+#DATASRC="srtm1,srtm3"
+#DATASRC="view1,view3,srtm1,srtm3"
+
+# Default Node and Way IDs
+# -------------------------------------
+NID_DEFAULT=7500000000
+WID_DEFAULT=4700000000
+
+# No configurations needed below
+# ===========================================
+
 # Reusable call of phyghtmap
 # --------------------------
 function createcontour {
@@ -48,15 +64,23 @@ function createcontour {
   
   
   # if there is already a file with the needed name, remove it
+  echo "checking for existing ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf ... "
   if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf ]
   then
+     echo "... removing existing file."
      rm ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
+  else
+     echo "... nothing to delete"
   fi
   
   # Check if there is output created to be renamed
-  if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf ]
+  echo "Checking if output has been generated ... "
+  if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}*.osm.pbf ]
   then
-    mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
+     echo "... enaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
+     mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
+  else
+     echo "... no output generated, failed ?"
   fi
   
 }
@@ -66,20 +90,18 @@ function createcontour {
 # Get the MAPNAME and set some defaults
 MAPNAME="$1"
 POLYFILE="./poly/$MAPNAME.poly"
-#DATASRC="view1,view3"
-DATASRC="view1,view3,srtm1,srtm3"
 
 # Check if ID's are given, else set default
 if [ -z "$2" ]
 then
-   NID=7500000000
+   NID=$NID_DEFAULT
 else
    NID=$2
 fi
 
 if [ -z "$3" ]
 then 
-   WID=4700000000
+   WID=$WID_DEFAULT
 else
    WID=$3
 fi
