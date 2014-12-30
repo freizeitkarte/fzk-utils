@@ -8,6 +8,11 @@ DATASRC="view1"
 #DATASRC="srtm1,srtm3"
 #DATASRC="view1,view3,srtm1,srtm3"
 
+# Number of jobs to be run in parallel (POSIX)
+# --------------------------------------------
+# if not set (nproc/2) is used as default
+# JOBS=1
+
 # Default Node and Way IDs
 # -------------------------------------
 NID_DEFAULT=7500000000
@@ -51,7 +56,7 @@ function createcontour {
   # -----------------------
   phyghtmap --step=${ELESTEP}                 \
             --osm-version=0.6                 \
-            --jobs=1                          \
+            --jobs=${JOBS}                    \
             --polygon=${POLYFILE}             \
             --line-cat=${ELECAT}              \
             --source=${DATASRC}               \
@@ -77,7 +82,7 @@ function createcontour {
   echo "Checking if output has been generated ... "
   if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}*.osm.pbf ]
   then
-     echo "... enaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
+     echo "... renaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
      mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
   else
      echo "... no output generated, failed ?"
@@ -104,6 +109,17 @@ then
    WID=$WID_DEFAULT
 else
    WID=$3
+fi
+
+# Calculate the parallel jobs to be run
+if [ -z "$JOBS" ]
+   JOBS=`nproc`
+   JOBS=$((JOBS+1))
+   JOBS=$((JOBS/2))
+fi
+# In case JOBS is 0, set it to one
+if [ "0$JOBS" -lt "1" ]
+  JOBS=1
 fi
 
 # Create the output
