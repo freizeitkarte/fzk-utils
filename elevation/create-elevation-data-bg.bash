@@ -113,12 +113,14 @@ fi
 
 # Calculate the parallel jobs to be run
 if [ -z "$JOBS" ]
+then
    JOBS=`nproc`
    JOBS=$((JOBS+1))
    JOBS=$((JOBS/2))
 fi
 # In case JOBS is 0, set it to one
 if [ "0$JOBS" -lt "1" ]
+then
   JOBS=1
 fi
 
