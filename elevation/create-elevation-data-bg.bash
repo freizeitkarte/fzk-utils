@@ -10,8 +10,9 @@ DATASRC="view1"
 
 # Number of jobs to be run in parallel (POSIX)
 # --------------------------------------------
-# if not set (nproc/2) is used as default
-# JOBS=1
+# - if not set (nproc/2) is used as default
+# - debian 7 runs faster with JOBS=1
+JOBS=1
 
 # Default Node and Way IDs
 # -------------------------------------
