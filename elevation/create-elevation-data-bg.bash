@@ -4,7 +4,8 @@
 # ===========================================
 # Datasources (view1,view3,srtm1,srtm3)
 # -------------------------------------
-DATASRC="view1"
+DATASRC="view1,view3"
+#DATASRC="view3"
 #DATASRC="srtm1,srtm3"
 #DATASRC="view1,view3,srtm1,srtm3"
 
@@ -31,10 +32,13 @@ function createcontour {
   ELEMEDIUM=$2
   ELEMAJOR=$3
 
-  # Calculate some values used lateron
+  # Calculate some values used later on
   ELECAT="${ELEMAJOR},${ELEMEDIUM}"
   ELEPATH="ele_${ELESTEP}_${ELEMEDIUM}_${ELEMAJOR}"
-  LOGFILE="logs/$MAPNAME-ele${ELESTEP}.log"
+  #LOGFILE="logs/$MAPNAME-ele${ELESTEP}.log"
+  LOGFILE="pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.info"
+  DATE=`date +'%Y-%m-%d %H:%M:%S'`
+  PHYGHTMAPREL=`phyghtmap -v`
 
   # Create the log directory if needed
   if [ ! -d "logs" ]
@@ -48,10 +52,32 @@ function createcontour {
     mkdir -p "pbf/${ELEPATH}"
   fi
 
-  # Creating some output
+  # Creating some output to screen
   echo
-  echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m"
-  echo "---------------------------------------------"
+  echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: ${DATASRC})"
+  echo "------------------------------------------------------------"
+  
+  # Create some output to the info file
+  echo "# General Information:"                       >  $LOGFILE
+  echo "# ------------------------------------------------------------" >> $LOGFILE
+  echo "# Filename:   Hoehendaten_${MAPNAME}.osm.pbf" >>  $LOGFILE
+  echo "# Build Date: $DATE"                          >> $LOGFILE
+  echo "# Created by: $PHYGHTMAPREL"                  >> $LOGFILE
+  echo "#"                                            >> $LOGFILE
+  echo "# phyghtmap parameters:"                      >> $LOGFILE
+  echo "# ------------------------------------------------------------" >> $LOGFILE
+  echo "# Datasource: ${DATASRC}"                     >> $LOGFILE
+  echo "# Step:       ${ELESTEP} m"                   >> $LOGFILE
+  echo "# Medium:     ${ELEMEDIUM} m"                 >> $LOGFILE
+  echo "# Major:      ${ELEMAJOR} m"                  >> $LOGFILE
+  echo "# Poly File:  ${POLYFILE}"                    >> $LOGFILE
+  echo "# Start NID:  ${NID}"                         >> $LOGFILE
+  echo "# Start WID:  ${WID}"                         >> $LOGFILE
+  echo "#"                                            >> $LOGFILE
+  echo "# Used hgt files:"                            >> $LOGFILE
+  echo "# ------------------------------------------------------------" >> $LOGFILE
+
+  
   
   # Actually call phyghtmap
   # -----------------------
@@ -66,7 +92,7 @@ function createcontour {
             --max-nodes-per-tile=0            \
             --pbf                             \
             --write-timestamp                 \
-            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' > $LOGFILE)
+            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
   
   
   # if there is already a file with the needed name, remove it
@@ -132,6 +158,6 @@ echo "============================================="
 
 # Call the functions to really do the work
 createcontour 20 100 500
-createcontour 25 250 500
-createcontour 10 100 200
+#createcontour 25 250 500
+#createcontour 10 100 200
 
