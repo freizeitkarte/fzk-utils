@@ -1,6 +1,8 @@
 hgtIndex_*.txt
 viewfinderHgtIndex_*.txt
 SRTM1/*
+SRTM1v3.0/
 SRTM3/*
+SRTM3v3.0/
 VIEW1/*
 VIEW3/*
