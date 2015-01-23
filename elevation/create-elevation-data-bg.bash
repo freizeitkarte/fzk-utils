@@ -97,7 +97,7 @@ function createcontour {
   
   # if there is already a file with the needed name, remove it
   echo "checking for existing ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf ... "
-  if [ -f "./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf" ]
+  if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf ]
   then
      echo "... removing existing file."
      rm ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
@@ -107,7 +107,7 @@ function createcontour {
   
   # Check if there is output created to be renamed
   echo "Checking if output has been generated ... "
-  if [ -f "./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf" ]
+  if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf ]
   then
      echo "... renaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
      mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
