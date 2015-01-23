@@ -4,8 +4,8 @@
 # ===========================================
 # Datasources (view1,view3,srtm1,srtm3)
 # -------------------------------------
-DATASRC="view1,view3"
-#DATASRC="view3"
+#DATASRC="view1,view3"
+DATASRC="view3"
 #DATASRC="srtm1,srtm3"
 #DATASRC="view1,view3,srtm1,srtm3"
 
@@ -110,7 +110,7 @@ function createcontour {
   if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}*.osm.pbf ]
   then
      echo "... renaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
-     mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
+     mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
   else
      echo "... no output generated, failed ?"
   fi
