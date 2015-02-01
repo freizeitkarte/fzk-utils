@@ -70,7 +70,7 @@ function createcontour {
   echo "# Step:       ${ELESTEP} m"                   >> $LOGFILE
   echo "# Medium:     ${ELEMEDIUM} m"                 >> $LOGFILE
   echo "# Major:      ${ELEMAJOR} m"                  >> $LOGFILE
-  echo "# Poly File:  ${POLYFILE}"                    >> $LOGFILE
+  echo "# Poly File:  ${MAPNAME}.poly"                >> $LOGFILE
   echo "# Start NID:  ${NID}"                         >> $LOGFILE
   echo "# Start WID:  ${WID}"                         >> $LOGFILE
   echo "#"                                            >> $LOGFILE
