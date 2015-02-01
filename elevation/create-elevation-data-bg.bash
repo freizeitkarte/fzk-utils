@@ -145,17 +145,17 @@ MAPNAME="$1"
 POLYFILE="./poly.work/$MAPNAME.poly"
 
 # Check if ID's are given, else set default
-if [ -z "$NID" ]
+if [ -z "${NID}" ]
 then
    NID=$NID_DEFAULT
 fi
-if [ -z "$WID" ]
+if [ -z "${WID}" ]
 then 
    WID=$WID_DEFAULT
 fi
 
 # Check if different Datasource is given, else set default
-if [ -z "DATASRC" ]
+if [ -z "${DATASRC}" ]
 then 
    DATASRC=$DATASRC_DEFAULT
 fi
