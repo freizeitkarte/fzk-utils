@@ -4,10 +4,7 @@
 # ===========================================
 # Datasources (view1,view3,srtm1,srtm3)
 # -------------------------------------
-#DATASRC="view1,view3"
-DATASRC="view3"
-#DATASRC="srtm1,srtm3"
-#DATASRC="view1,view3,srtm1,srtm3"
+DATASRC_DEFAULT="view3"
 
 # Number of jobs to be run in parallel (POSIX)
 # --------------------------------------------
@@ -119,23 +116,45 @@ function createcontour {
 
 # Main Part
 # ====================
+# Initialize values possibly overwritten by arguments
+# ---------------------------------------------------
+NID=''
+WID=''
+DATASRC=''
+
+# Get given options if present
+# ----------------------------
+while getopts 's:n:w:' flag
+do
+   case "${flag}" in
+      s) DATASRC="${OPTARG}";
+      n) NID="${OPTARG}";
+      w) WID="${OPTARG}";
+   esac
+done
+
+# Shift forward to the rest of the arguments
+shift $((OPTIND-1))
+
+
 # Get the MAPNAME and set some defaults
 MAPNAME="$1"
 POLYFILE="./poly.work/$MAPNAME.poly"
 
 # Check if ID's are given, else set default
-if [ -z "$2" ]
+if [ -z "$NID" ]
 then
    NID=$NID_DEFAULT
-else
-   NID=$2
 fi
-
-if [ -z "$3" ]
+if [ -z "$WID" ]
 then 
    WID=$WID_DEFAULT
-else
-   WID=$3
+fi
+
+# Check if different Datasource is given, else set default
+if [ -z "DATASRC" ]
+then 
+   DATASRC=$DATASRC_DEFAULT
 fi
 
 # Calculate the parallel jobs to be run
