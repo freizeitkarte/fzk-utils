@@ -127,9 +127,12 @@ DATASRC=''
 while getopts 's:n:w:' flag
 do
    case "${flag}" in
-      s) DATASRC="${OPTARG}";
-      n) NID="${OPTARG}";
-      w) WID="${OPTARG}";
+      s) DATASRC="${OPTARG}";;
+      n) NID="${OPTARG}";;
+      w) WID="${OPTARG}";;
+      *) echo "Unexpected option ${flag}"
+         exit 1
+         ;;
    esac
 done
 
