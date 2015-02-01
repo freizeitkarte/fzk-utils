@@ -1,22 +1,2 @@
-#./create-elevation-data-bg.bash Freizeitkarte_GBR_IRL         6200000000 3400000000
-#./create-elevation-data-bg.bash Freizeitkarte_DNK_NOR_SWE_FIN 6300000000 3500000000
-#./create-elevation-data-bg.bash Freizeitkarte_BEL_NLD_LUX     6400000000 3600000000
-#./create-elevation-data-bg.bash Freizeitkarte_ESP_PRT         6500000000 3700000000
-#./create-elevation-data-bg.bash Freizeitkarte_PYRENEES        6600000000 3800000000
-#./create-elevation-data-bg.bash Freizeitkarte_CARPATHIAN      6700000000 3900000000
-#./create-elevation-data-bg.bash Freizeitkarte_BLR      6800000000 4000000000
-#./create-elevation-data-bg.bash Freizeitkarte_MLT      6900000000 4100000000
-#./create-elevation-data-bg.bash Freizeitkarte_ALB	7000000000 4200000000
-#./create-elevation-data-bg.bash Freizeitkarte_AND	7100000000 4300000000
-#./create-elevation-data-bg.bash Freizeitkarte_BIH	7200000000 4400000000
-#./create-elevation-data-bg.bash Freizeitkarte_CYP	7300000000 4500000000
-#./create-elevation-data-bg.bash Freizeitkarte_FRO	7400000000 4600000000
-#./create-elevation-data-bg.bash Freizeitkarte_IMN	7600000000 4800000000
-#./create-elevation-data-bg.bash Freizeitkarte_KOSOVO	7700000000 4900000000
-#./create-elevation-data-bg.bash Freizeitkarte_LIE	7800000000 5000000000
-./create-elevation-data-bg.bash Freizeitkarte_MCO	7900000000 5100000000
-#./create-elevation-data-bg.bash Freizeitkarte_MDA	8000000000 5200000000
-#./create-elevation-data-bg.bash Freizeitkarte_MKD	8100000000 5300000000
-#./create-elevation-data-bg.bash Freizeitkarte_MNE	8200000000 5400000000
-#./create-elevation-data-bg.bash Freizeitkarte_UKR	8300000000 5500000000
+#./create-elevation-data-bg.bash -n 7000000000 -w 4200000000 Freizeitkarte_ALB 
 
