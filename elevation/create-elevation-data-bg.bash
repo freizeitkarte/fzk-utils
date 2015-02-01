@@ -121,7 +121,7 @@ function createcontour {
 # ====================
 # Get the MAPNAME and set some defaults
 MAPNAME="$1"
-POLYFILE="./poly/$MAPNAME.poly"
+POLYFILE="./poly.work/$MAPNAME.poly"
 
 # Check if ID's are given, else set default
 if [ -z "$2" ]
