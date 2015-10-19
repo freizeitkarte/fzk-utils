@@ -8,7 +8,7 @@ The main worker script, served by the other wrapper scripts
 
 create-elevation-data-fix-poly.bash
 -----------------------------------
-Loops through all the found *.poly files in the poly subdirectory and creates the needed elevation pbf files using fix node IDs and fix way IDs. Is calling create-elevation-data-bg.bash for executing the real work
+Loops through all the found *.poly files in the poly.work subdirectory and creates the needed elevation pbf files using fix node IDs and fix way IDs. Is calling create-elevation-data-bg.bash for executing the real work
 
 create-elevation-data-manual.bash
 ---------------------------------
