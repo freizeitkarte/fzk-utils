@@ -1,5 +1,29 @@
 #!/bin/bash
 
+# Usage
+# ===========================================
+# ./create-elevation-data-bg.bash [options] <MAPNAME>
+#
+# Options:
+# -s  datasource to be used (phyghtmap)
+#     default: view3
+# -n  start node ID for the generation of the contour lines (phyghtmap)
+#     default: 7000000000
+# -w  start way ID for the generation of the contour lines (phyghtmap)
+#     default: 4700000000
+# -e  elevation steps and categories
+#     default: "20,100,500"
+#     other value that is actually supported by fzk: "10,100,200"
+#
+# Example:
+# ./create-elevation-data-bg.bash 
+#    [-s "view1,view3"]
+#    [-n 7000000000]
+#    [-w 4200000000]
+#    [-e "10,100,200"]
+#    Freizeitkarte_ALB 
+
+
 # Default Configurations (adoptable)
 # ===========================================
 # Datasources (view1,view3,srtm1,srtm3)
@@ -17,6 +41,15 @@ JOBS=1
 NID_DEFAULT=7500000000
 WID_DEFAULT=4700000000
 
+# Default elevation categorization
+# ---------------------------------
+# Sensful combinations for fzk: 
+#   20,100,500
+#   10,100,200
+ELESTEP_DEFAULT=20
+ELEMEDIUM_DEFAULT=100
+ELEMAJOR_DEFAULT=500
+
 # No configurations needed below
 # ===========================================
 
@@ -24,10 +57,10 @@ WID_DEFAULT=4700000000
 # --------------------------
 function createcontour {
   
-  # Get the given arguments
-  ELESTEP=$1
-  ELEMEDIUM=$2
-  ELEMAJOR=$3
+#  # Get the given arguments
+#  ELESTEP=$1
+#  ELEMEDIUM=$2
+#  ELEMAJOR=$3
 
   # Calculate some values used later on
   ELECAT="${ELEMAJOR},${ELEMEDIUM}"
@@ -121,15 +154,17 @@ function createcontour {
 NID=''
 WID=''
 DATASRC=''
+ELEDETAIL=''
 
 # Get given options if present
 # ----------------------------
-while getopts 's:n:w:' flag
+while getopts 's:n:w:e:' flag
 do
    case "${flag}" in
       s) DATASRC="${OPTARG}";;
       n) NID="${OPTARG}";;
       w) WID="${OPTARG}";;
+      e) ELEDETAIL="${OPTARG}";;
       *) echo "Unexpected option ${flag}"
          exit 1
          ;;
@@ -160,6 +195,25 @@ then
    DATASRC=$DATASRC_DEFAULT
 fi
 
+# Check if different elevation categorization is choosen, else set default
+if [ -z "${ELEDETAIL}" ]
+then 
+   ELESTEP=$ELESTEP_DEFAULT
+   ELEMEDIUM=$ELEMEDIUM_DEFAULT
+   ELEMAJOR=$ELEMAJOR_DEFAULT
+else
+   # arguments given, let's split it up
+   # Let's check if we have 3 arguments in there, else exit
+   if [ `echo $ELEDETAIL | sed 's/,/ /g' | wc -w` -eq 3 ]
+   then
+      ELESTEP=`echo $ELEDETAIL | cut -d, -f1`
+      ELEMEDIUM=`echo $ELEDETAIL | cut -d, -f2`
+      ELEMAJOR=`echo $ELEDETAIL | cut -d, -f3`
+   else
+      echo "ERROR: there is something wrong with $ELEDETAIL"
+   fi 
+fi
+
 # Calculate the parallel jobs to be run
 if [ -z "$JOBS" ]
 then
@@ -179,7 +233,8 @@ echo "$POLYFILE"
 echo "============================================="
 
 # Call the functions to really do the work
-createcontour 20 100 500
+createcontour
+#createcontour 20 100 500
 #createcontour 25 250 500
 #createcontour 10 100 200
 
