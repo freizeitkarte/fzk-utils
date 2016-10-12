@@ -14,6 +14,9 @@
 # -e  elevation steps and categories
 #     default: "20,100,500"
 #     other value that is actually supported by fzk: "10,100,200"
+# -d  alternative hgt directory
+#     default: "./hgt/"
+#     other values possible: "./hgt-special/AUT/hgt/"
 #
 # Example:
 # ./create-elevation-data-bg.bash 
@@ -49,6 +52,10 @@ WID_DEFAULT=4700000000
 ELESTEP_DEFAULT=20
 ELEMEDIUM_DEFAULT=100
 ELEMAJOR_DEFAULT=500
+
+# Default HGT Directory
+# ---------------------
+HGTDIR_DEFAULT="./hgt/"
 
 # No configurations needed below
 # ===========================================
@@ -122,6 +129,7 @@ function createcontour {
             --max-nodes-per-tile=0            \
             --pbf                             \
             --write-timestamp                 \
+			--hgtdir=${HGTDIR}                \
             --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
   
   
@@ -155,6 +163,7 @@ NID=''
 WID=''
 DATASRC=''
 ELEDETAIL=''
+HGTDIR=''
 
 # Get given options if present
 # ----------------------------
@@ -165,6 +174,7 @@ do
       n) NID="${OPTARG}";;
       w) WID="${OPTARG}";;
       e) ELEDETAIL="${OPTARG}";;
+	  d) HGTDIR="${OPTARG}";;
       *) echo "Unexpected option ${flag}"
          exit 1
          ;;
@@ -194,6 +204,13 @@ if [ -z "${DATASRC}" ]
 then 
    DATASRC=$DATASRC_DEFAULT
 fi
+
+# Check if different Datasource is given, else set default
+if [ -z "${HGTDIR}" ]
+then 
+   HGTDIR=$HGTDIR_DEFAULT
+fi
+
 
 # Check if different elevation categorization is choosen, else set default
 if [ -z "${ELEDETAIL}" ]
