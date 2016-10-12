@@ -167,7 +167,7 @@ HGTDIR=''
 
 # Get given options if present
 # ----------------------------
-while getopts 's:n:w:e:' flag
+while getopts 's:n:w:e:d:' flag
 do
    case "${flag}" in
       s) DATASRC="${OPTARG}";;
