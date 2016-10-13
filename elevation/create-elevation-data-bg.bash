@@ -103,7 +103,7 @@ function createcontour {
   echo "#"                                            >> $LOGFILE
   echo "# phyghtmap parameters:"                      >> $LOGFILE
   echo "# ------------------------------------------------------------" >> $LOGFILE
-  if [ $SPECIALSRC -eq 1]
+  if [ $SPECIALSRC -eq 1 ]
   then
      echo "# Datasource: ${DATASRC}"                     >> $LOGFILE  
   else
