@@ -105,9 +105,9 @@ function createcontour {
   echo "# ------------------------------------------------------------" >> $LOGFILE
   if [ $SPECIALSRC -eq 1 ]
   then
-     echo "# Datasource: ${DATASRC}"                     >> $LOGFILE  
-  else
      echo "# Datasource: special source"                 >> $LOGFILE  
+  else
+     echo "# Datasource: ${DATASRC}"                     >> $LOGFILE  
   fi
   echo "# Step:       ${ELESTEP} m"                   >> $LOGFILE
   echo "# Medium:     ${ELEMEDIUM} m"                 >> $LOGFILE
