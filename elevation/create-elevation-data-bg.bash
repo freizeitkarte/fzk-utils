@@ -214,10 +214,10 @@ fi
 if [ -n "${HGTDIR}" ]
 then 
    SPECIALSRC=1
-   SPECIALSRC=0
    DATASRC="srtm1"
 else
    HGTDIR=$HGTDIR_DEFAULT
+   SPECIALSRC=0
 fi
 
 
