@@ -103,7 +103,12 @@ function createcontour {
   echo "#"                                            >> $LOGFILE
   echo "# phyghtmap parameters:"                      >> $LOGFILE
   echo "# ------------------------------------------------------------" >> $LOGFILE
-  echo "# Datasource: ${DATASRC}"                     >> $LOGFILE
+  if [ $SPECIALSRC -eq 1]
+  then
+     echo "# Datasource: ${DATASRC}"                     >> $LOGFILE  
+  else
+     echo "# Datasource: special source"                 >> $LOGFILE  
+  fi
   echo "# Step:       ${ELESTEP} m"                   >> $LOGFILE
   echo "# Medium:     ${ELEMEDIUM} m"                 >> $LOGFILE
   echo "# Major:      ${ELEMAJOR} m"                  >> $LOGFILE
@@ -205,10 +210,14 @@ then
    DATASRC=$DATASRC_DEFAULT
 fi
 
-# Check if different Datasource is given, else set default
+# If different hgt directory is given set SPECIALSRC flag and reset DATASRC to srtm1, else set default
 if [ -z "${HGTDIR}" ]
 then 
+   SPECIALSRC=1
+else
    HGTDIR=$HGTDIR_DEFAULT
+   SPECIALSRC=0
+   DATASRC="srtm1"
 fi
 
 
@@ -251,7 +260,4 @@ echo "============================================="
 
 # Call the functions to really do the work
 createcontour
-#createcontour 20 100 500
-#createcontour 25 250 500
-#createcontour 10 100 200
 
