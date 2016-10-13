@@ -211,13 +211,13 @@ then
 fi
 
 # If different hgt directory is given set SPECIALSRC flag and reset DATASRC to srtm1, else set default
-if [ -z "${HGTDIR}" ]
+if [ -n "${HGTDIR}" ]
 then 
    SPECIALSRC=1
-else
-   HGTDIR=$HGTDIR_DEFAULT
    SPECIALSRC=0
    DATASRC="srtm1"
+else
+   HGTDIR=$HGTDIR_DEFAULT
 fi
 
 
