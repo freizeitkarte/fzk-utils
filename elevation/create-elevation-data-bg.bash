@@ -26,6 +26,8 @@
 #    [-e "10,100,200"]
 #    Freizeitkarte_ALB 
 
+# ./create-elevation-data-bg.bash -e "10,100,200" -d "hgt-special/SWE/hgt/" Freizeitkarte_SWE
+
 
 # Default Configurations (adoptable)
 # ===========================================
