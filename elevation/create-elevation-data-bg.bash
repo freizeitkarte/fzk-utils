@@ -216,7 +216,8 @@ fi
 if [ -n "${HGTDIR}" ]
 then 
    SPECIALSRC=1
-   DATASRC="srtm1"
+#   DATASRC="srtm1"
+   DATASRC="view1"
 else
    HGTDIR=$HGTDIR_DEFAULT
    SPECIALSRC=0
