@@ -134,7 +134,7 @@ function createcontour {
             --max-nodes-per-tile=0            \
             --pbf                             \
             --write-timestamp                 \
-            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR}/SRTM1v3.0/*.hgt | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
+            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR}/hgt/*.hgt | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
   
   
   # if there is already a file with the needed name, remove it
