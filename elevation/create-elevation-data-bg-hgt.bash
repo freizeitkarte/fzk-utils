@@ -93,7 +93,13 @@ function createcontour {
 
   # Creating some output to screen
   echo
-  echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: ${DATASRC})"
+  if [ $SPECIALSRC -eq 1 ]
+  then
+     echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: special source)"
+  else
+     echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: ${DATASRC})"
+  fi
+   
   echo "------------------------------------------------------------"
   
   # Create some output to the info file
