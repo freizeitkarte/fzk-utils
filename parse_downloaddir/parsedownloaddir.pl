@@ -592,9 +592,18 @@ foreach my $contentline ( split /\n/, $content) {
     
     # Let's get the size
     if ( $contentline =~ /.*\.Images\.zip.*> *(\d*\.?\d+)([KMG])<\/td>/ ) {
-      $SIZE = "$1 $2B";
-      print "$SIZE\n";
+      #print "$1 $2 - ";
+      
+      my $sizevalue = $1;
+      my $sizeunit = $2;
+      
+      if ( $sizeunit eq "M" ) {
+        $sizevalue = int(int($sizevalue + 0.9)/10 + 0.9)*10;
+      }
+      
+      $SIZE = "$sizevalue $sizeunit" . "B";
       $mapinfo{$KEY}{"size"} = $SIZE;
+      #print "$SIZE\n";
     }
 
   } # end if contains href
