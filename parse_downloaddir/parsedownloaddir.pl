@@ -268,11 +268,11 @@ my %map_definitions = (
         },                       
         'DNK_NOR_SWE_FIN' => {               
           'de'  => { 
-            'title'         => 'Skandinavische & Baltische Staaten',
+            'title'         => 'Skandinavische &amp; Baltische Staaten',
             'title_long'    => 'D&auml;nemark (DNK), Norwegen (NOR), Schweden (SWE), Finnland (FIN) [Skandinavische Staaten] Russische Exklave Kaliningrad, Litauen (LTU), Lettland (LVA), Estland (EST) [Baltische Staaten]',
           },
           'en'  => {
-            'title'         => 'Scandinavian & Baltic States',
+            'title'         => 'Scandinavian &amp; Baltic States',
             'title_long'    => 'Denmark (DNK), Norway (NOR), Sweden (SWE), Finland (FIN) [Scandinavian states] Russian Exclave Kaliningrad, Lithuania (LTU), Latvia (LVA), Estonia (EST) [Baltic states]',
           },
         },                       
@@ -294,11 +294,11 @@ my %map_definitions = (
         },                       
         'ESP_PRT' => {               
           'de'  => { 
-            'title'         => 'Spanien & Portugal',
+            'title'         => 'Spanien &amp; Portugal',
             'title_long'    => 'Spanien (ESP), Portugal (PRT) [Iberische Halbinsel, Pyren&auml;en, Balearen]',
           },
           'en'  => {
-            'title'         => 'Spain & Portugal',
+            'title'         => 'Spain &amp; Portugal',
             'title_long'    => 'Spain (ESP), Portugal (PRT) [Iberian Peninsula, Pyrenees, Balearics]',
           },
         },                       
@@ -344,11 +344,11 @@ my %map_definitions = (
         },                       
         'GBR_IRL' => {               
           'de'  => { 
-            'title'         => 'Grossbritannien & Irland',
+            'title'         => 'Grossbritannien &amp; Irland',
             'title_long'    => 'Vereinigtes K&ouml;nigreich Gro&szlig;britannien und Nordirland (GBR), Irland (IRL), F&auml;r&ouml;er (FRO)',
           },
           'en'  => {
-            'title'         => 'UK & Ireland',
+            'title'         => 'UK &amp; Ireland',
             'title_long'    => 'United Kingdom (GBR), Ireland (IRL), Faroe Islands (FRO)',
           },
         },                       
@@ -593,6 +593,7 @@ foreach my $contentline ( split /\n/, $content) {
     # Let's get the size
     if ( $contentline =~ /.*\.Images\.zip.*> *(\d*\.?\d+)([KMG])<\/td>/ ) {
       $SIZE = "$1 $2B";
+      print "$SIZE\n";
       $mapinfo{$KEY}{"size"} = $SIZE;
     }
 
@@ -604,7 +605,7 @@ foreach my $contentline ( split /\n/, $content) {
 # -----------------------------------------------------------------------------
 foreach my $mapinfo_entry (sort keys %mapinfo) {
   
-  my $headerprinted = 0;
+#  my $headerprinted = 0;
   
   foreach my $maptype (@maptypes) {
     
