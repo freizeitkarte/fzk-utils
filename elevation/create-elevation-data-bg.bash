@@ -17,6 +17,10 @@
 # -d  alternative hgt directory
 #     default: "./hgt/"
 #     other values possible: "./hgt-special/AUT/hgt/"
+# -v  srtm-version
+#     default: 3
+#     also possible: 2.1
+#     phyghtmap option: srtm-version
 #
 # Example:
 # ./create-elevation-data-bg.bash 
@@ -58,6 +62,12 @@ ELEMAJOR_DEFAULT=500
 # Default HGT Directory
 # ---------------------
 HGTDIR_DEFAULT="./hgt/"
+
+# Default srtm-version
+# ---------------------
+SRTMVERSION_DEFAULT="3"
+
+
 
 # No configurations needed below
 # ===========================================
@@ -111,6 +121,10 @@ function createcontour {
   else
      echo "# Datasource: ${DATASRC}"                     >> $LOGFILE  
   fi
+  if [ ${DATASRC} = "srtm1" ] || [ ${DATASRC} = "srtm3" ]
+  then
+     echo "# Srtmversion:${SRTMVERSION}"                 >> $LOGFILE
+  fi
   echo "# Step:       ${ELESTEP} m"                   >> $LOGFILE
   echo "# Medium:     ${ELEMEDIUM} m"                 >> $LOGFILE
   echo "# Major:      ${ELEMAJOR} m"                  >> $LOGFILE
@@ -127,6 +141,7 @@ function createcontour {
   # -----------------------
   phyghtmap --step=${ELESTEP}                 \
             --osm-version=0.6                 \
+            ${SRTMVERSION_TXT}                \
             --jobs=${JOBS}                    \
             --polygon=${POLYFILE}             \
             --line-cat=${ELECAT}              \
@@ -171,17 +186,19 @@ WID=''
 DATASRC=''
 ELEDETAIL=''
 HGTDIR=''
+SRTMVERSION=''
 
 # Get given options if present
 # ----------------------------
-while getopts 's:n:w:e:d:' flag
+while getopts 's:n:w:e:d:v:' flag
 do
    case "${flag}" in
       s) DATASRC="${OPTARG}";;
       n) NID="${OPTARG}";;
       w) WID="${OPTARG}";;
       e) ELEDETAIL="${OPTARG}";;
-	  d) HGTDIR="${OPTARG}";;
+      d) HGTDIR="${OPTARG}";;
+      v) SRTMVERSION="${OPTARG}";;
       *) echo "Unexpected option ${flag}"
          exit 1
          ;;
@@ -241,6 +258,18 @@ else
    else
       echo "ERROR: there is something wrong with $ELEDETAIL"
    fi 
+fi
+
+# Create the srtm version if needed
+if [ ${DATASRC} = "srtm1" ] || [ ${DATASRC} = "srtm3" ]
+then
+   if [ -z "${SRTMVERSION}" ]
+   then
+      SRTMVERSION=$SRTMVERSION_DEFAULT
+   fi
+   SRTMVERSION_TXT="--srtm-version=${SRTMVERSION}"
+else
+   SRTMVERSION_TXT=''
 fi
 
 # Calculate the parallel jobs to be run
