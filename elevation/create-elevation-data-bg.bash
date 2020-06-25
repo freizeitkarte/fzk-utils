@@ -8,9 +8,9 @@
 # -s  datasource to be used (phyghtmap)
 #     default: view3
 # -n  start node ID for the generation of the contour lines (phyghtmap)
-#     default: 7000000000
+#     default: 750 000 000 000
 # -w  start way ID for the generation of the contour lines (phyghtmap)
-#     default: 4700000000
+#     default: 750 000 000 000
 # -e  elevation steps and categories
 #     default: "20,100,500"
 #     other value that is actually supported by fzk: "10,100,200"
@@ -47,8 +47,10 @@ JOBS=1
 
 # Default Node and Way IDs
 # -------------------------------------
-NID_DEFAULT=7500000000
-WID_DEFAULT=4700000000
+#NID_DEFAULT=7500000000
+#WID_DEFAULT=4700000000
+NID_DEFAULT=750000000000
+WID_DEFAULT=750000000000
 
 # Default elevation categorization
 # ---------------------------------
@@ -233,8 +235,8 @@ fi
 if [ -n "${HGTDIR}" ]
 then 
    SPECIALSRC=1
-#   DATASRC="srtm1"
-   DATASRC="view1"
+   DATASRC="srtm1"
+#   DATASRC="view1"
 else
    HGTDIR=$HGTDIR_DEFAULT
    SPECIALSRC=0
