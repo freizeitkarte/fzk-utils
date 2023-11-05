@@ -14,7 +14,7 @@
 # -e  elevation steps and categories
 #     default: "20,100,500"
 #     other value that is actually supported by fzk: "10,100,200"
-# -d  alternative hgt directory
+# -d  alternative hgt/geotiff directory
 #     default: "./hgt/"
 #     other values possible: "./hgt-special/AUT/hgt/"
 #
@@ -97,7 +97,7 @@ function createcontour {
   echo
   if [ $SPECIALSRC -eq 1 ]
   then
-     echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: special source)"
+     echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: special - ${HGTDIR})"
   else
      echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: ${DATASRC})"
   fi
@@ -142,7 +142,7 @@ function createcontour {
             --max-nodes-per-tile=0            \
             --pbf                             \
             --write-timestamp                 \
-            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR}/*.hgt | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
+            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR} | tee >(grep "tif file" >> $LOGFILE)
   
   
   # if there is already a file with the needed name, remove it
