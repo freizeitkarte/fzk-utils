@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Build elevation pbf directly from downloaded hgt files from special sources.
+# If available it also copies a probalby existing fzk.license from the hgt directory
+# with the correct name to the destination directory.
+
 # Usage
 # ===========================================
 # ./create-elevation-data-bg.bash [options] <MAPNAME>
@@ -61,6 +65,10 @@ ELEMAJOR_DEFAULT=500
 # ---------------------
 HGTDIR_DEFAULT="./hgt/"
 
+# FZK License file to check for
+# ==============================
+LICENSE_FILE="fzk.license"
+
 # No configurations needed below
 # ===========================================
 
@@ -97,7 +105,7 @@ function createcontour {
   echo
   if [ $SPECIALSRC -eq 1 ]
   then
-     echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: special source)"
+     echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: other: ${HGTDIR})"
   else
      echo "${ELESTEP}/${ELEMEDIUM}/${ELEMAJOR} m (datasource: ${DATASRC})"
   fi
@@ -115,7 +123,7 @@ function createcontour {
   echo "# ------------------------------------------------------------" >> $LOGFILE
   if [ $SPECIALSRC -eq 1 ]
   then
-     echo "# Datasource: special source"                 >> $LOGFILE  
+     echo "# Datasource: other: ${HGTDIR}"                 >> $LOGFILE  
   else
      echo "# Datasource: ${DATASRC}"                     >> $LOGFILE  
   fi
@@ -161,9 +169,16 @@ function createcontour {
   then
      echo "... renaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
      mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
+
+     # Check if there is a license file to be copied
+     if [ -f  ${HGTDIR}/${LICENSE_FILE} ]
+     then
+        echo "... fzk.license file found, copying it to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license"
+        cp ${HGTDIR}/${LICENSE_FILE} ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license
   else
      echo "... no output generated, failed ?"
   fi
+
   
 }
 
