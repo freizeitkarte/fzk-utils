@@ -48,6 +48,10 @@ JOBS=1
 NID_DEFAULT=750000000000
 WID_DEFAULT=750000000000
 
+# Max Nodes per tile
+MAXNODESPERTILE=1000000
+MAXNODESPERWAY=2000
+
 # Default elevation categorization
 # ---------------------------------
 # Sensful combinations for fzk: 
@@ -126,7 +130,7 @@ function createcontour {
   echo "# Start NID:  ${NID}"                         >> $LOGFILE
   echo "# Start WID:  ${WID}"                         >> $LOGFILE
   echo "#"                                            >> $LOGFILE
-  echo "# Used hgt files:"                            >> $LOGFILE
+  echo "# Used hgt/geogif files:"                            >> $LOGFILE
   echo "# ------------------------------------------------------------" >> $LOGFILE
 
   
@@ -139,7 +143,8 @@ function createcontour {
             --line-cat=${ELECAT}              \
             --start-node-id=${NID}            \
             --start-way-id=${WID}             \
-            --max-nodes-per-tile=0            \
+            --max-nodes-per-tile=0 \
+            --max-nodes-per-way=${MAXNODESPERWAY} \
             --pbf                             \
             --write-timestamp                 \
             --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR} | tee >(grep "tif file" >> $LOGFILE)

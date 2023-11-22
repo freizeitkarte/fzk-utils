@@ -32,6 +32,12 @@
 
 # ./create-elevation-data-bg.bash -e "10,100,200" -d "hgt-special/SWE/hgt/" Freizeitkarte_SWE
 
+# Which pyhgtmap
+# --------------
+# Katze
+PHYHGTMAP=phyhgtmap
+# https://github.com/agrenott/pyhgtmap
+PHYHGTMAP=pyhgtmap
 
 # Default Configurations (adoptable)
 # ===========================================
@@ -87,7 +93,7 @@ function createcontour {
   #LOGFILE="logs/$MAPNAME-ele${ELESTEP}.log"
   LOGFILE="pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.info"
   DATE=`date +'%Y-%m-%d %H:%M:%S'`
-  PHYGHTMAPREL=`phyghtmap -v`
+  PHYGHTMAPREL=`$PHYHGTMAP -v`
 
   # Create the log directory if needed
   if [ ! -d "logs" ]
@@ -119,7 +125,7 @@ function createcontour {
   echo "# Build Date: $DATE"                          >> $LOGFILE
   echo "# Created by: $PHYGHTMAPREL"                  >> $LOGFILE
   echo "#"                                            >> $LOGFILE
-  echo "# phyghtmap parameters:"                      >> $LOGFILE
+  echo "# $PHYHGTMAP parameters:"                      >> $LOGFILE
   echo "# ------------------------------------------------------------" >> $LOGFILE
   if [ $SPECIALSRC -eq 1 ]
   then
@@ -141,7 +147,7 @@ function createcontour {
   
   # Actually call phyghtmap
   # -----------------------
-  phyghtmap --step=${ELESTEP}                 \
+  $PHYHGTMAP --step=${ELESTEP}                 \
             --osm-version=0.6                 \
             --jobs=${JOBS}                    \
             --line-cat=${ELECAT}              \
@@ -149,9 +155,15 @@ function createcontour {
             --start-way-id=${WID}             \
             --max-nodes-per-tile=0            \
             --pbf                             \
+            --polygon=${POLYFILE}             \
+            --earthexplorer-user=guguseli     \
+            --earthexplorer-password=guguseli \
+            --disableRDP                      \
             --write-timestamp                 \
-            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR}/*.hgt | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
+            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR}/*.hgt | tee >(grep "^hgt file"  >> $LOGFILE)
+            #--output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} ${HGTDIR}/*.hgt | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
   
+            #--smooth=2                        \
   
   # if there is already a file with the needed name, remove it
   echo "checking for existing ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf ... "
@@ -166,6 +178,7 @@ function createcontour {
   # Check if there is output created to be renamed
   echo "Checking if output has been generated ... "
   if [ -f ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf ]
+
   then
      echo "... renaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
      mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
@@ -175,6 +188,7 @@ function createcontour {
      then
         echo "... fzk.license file found, copying it to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license"
         cp ${HGTDIR}/${LICENSE_FILE} ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license
+     fi
   else
      echo "... no output generated, failed ?"
   fi
