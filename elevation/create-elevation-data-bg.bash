@@ -1,15 +1,21 @@
 #!/bin/bash
 
+# History
+# -------
+# 20231122/pab: - adding support for pyhgtmap fork of agrenott
+#               - adding support for Sonny Download sources (SONN1 SONN3)
+
 # Usage
 # ===========================================
 # ./create-elevation-data-bg.bash [options] <MAPNAME>
 #
 # Options:
-# -s  datasource to be used (phyghtmap)
-#     default: view3
-# -n  start node ID for the generation of the contour lines (phyghtmap)
+# -s  datasource to be used (pyghtmap)
+#     default: srtm1
+#     supported: srtm1, srtm3, sonn1, sonn3, view1, view3
+# -n  start node ID for the generation of the contour lines (pyghtmap)
 #     default: 750 000 000 000
-# -w  start way ID for the generation of the contour lines (phyghtmap)
+# -w  start way ID for the generation of the contour lines (pyghtmap)
 #     default: 750 000 000 000
 # -e  elevation steps and categories
 #     default: "20,100,500"
@@ -20,24 +26,30 @@
 # -v  srtm-version
 #     default: 3
 #     also possible: 2.1
-#     phyghtmap option: srtm-version
+#     pyghtmap option: srtm-version
 #
-# Example:
+# Examples:
 # ./create-elevation-data-bg.bash 
 #    [-s "view1,view3"]
 #    [-n 7000000000]
 #    [-w 4200000000]
 #    [-e "10,100,200"]
 #    Freizeitkarte_ALB 
-
+#
 # ./create-elevation-data-bg.bash -e "10,100,200" -d "hgt-special/SWE/hgt/" Freizeitkarte_SWE
 
+# Which pyhgtmap
+# --------------
+# Katze
+#PYHGTMAP=phyhgtmap
+# https://github.com/agrenott/pyhgtmap
+PYHGTMAP=pyhgtmap
 
 # Default Configurations (adoptable)
 # ===========================================
 # Datasources (view1,view3,srtm1,srtm3)
 # -------------------------------------
-DATASRC_DEFAULT="view3"
+DATASRC_DEFAULT="srtm1"
 
 # Number of jobs to be run in parallel (POSIX)
 # --------------------------------------------
@@ -65,6 +77,11 @@ ELEMAJOR_DEFAULT=500
 # ---------------------
 HGTDIR_DEFAULT="./hgt/"
 
+# FZK License file handling
+# ==============================
+LICENSE_FILE="fzk.license"
+LICENSE_DIR="./license/"
+
 # Default srtm-version
 # ---------------------
 SRTMVERSION_DEFAULT="3"
@@ -89,7 +106,7 @@ function createcontour {
   #LOGFILE="logs/$MAPNAME-ele${ELESTEP}.log"
   LOGFILE="pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.info"
   DATE=`date +'%Y-%m-%d %H:%M:%S'`
-  PHYGHTMAPREL=`phyghtmap -v`
+  PYGHTMAPREL=`$PYHGTMAP -v`
 
   # Create the log directory if needed
   if [ ! -d "logs" ]
@@ -113,9 +130,9 @@ function createcontour {
   echo "# ------------------------------------------------------------" >> $LOGFILE
   echo "# Filename:   Hoehendaten_${MAPNAME}.osm.pbf" >>  $LOGFILE
   echo "# Build Date: $DATE"                          >> $LOGFILE
-  echo "# Created by: $PHYGHTMAPREL"                  >> $LOGFILE
+  echo "# Created by: $PYGHTMAPREL"                   >> $LOGFILE
   echo "#"                                            >> $LOGFILE
-  echo "# phyghtmap parameters:"                      >> $LOGFILE
+  echo "# $PYHGTMAP parameters:"                      >> $LOGFILE
   echo "# ------------------------------------------------------------" >> $LOGFILE
   if [ $SPECIALSRC -eq 1 ]
   then
@@ -134,27 +151,27 @@ function createcontour {
   echo "# Start NID:  ${NID}"                         >> $LOGFILE
   echo "# Start WID:  ${WID}"                         >> $LOGFILE
   echo "#"                                            >> $LOGFILE
-  echo "# Used hgt files:"                            >> $LOGFILE
+  echo "# Used source files:"                         >> $LOGFILE
   echo "# ------------------------------------------------------------" >> $LOGFILE
 
   
   
   # Actually call phyghtmap
   # -----------------------
-  phyghtmap --step=${ELESTEP}                 \
-            --osm-version=0.6                 \
-            ${SRTMVERSION_TXT}                \
-            --jobs=${JOBS}                    \
-            --polygon=${POLYFILE}             \
-            --line-cat=${ELECAT}              \
-            --source=${DATASRC}               \
-            --start-node-id=${NID}            \
-            --start-way-id=${WID}             \
-            --max-nodes-per-tile=0            \
-            --pbf                             \
-            --write-timestamp                 \
-			--hgtdir=${HGTDIR}                \
-            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} | tee >(grep using | grep hgt | awk '{print $NF}' | sed 's/.$//' >> $LOGFILE)
+  $PYHGTMAP --step=${ELESTEP}                   \
+            --osm-version=0.6                   \
+            --jobs=${JOBS}                      \
+            --polygon=${POLYFILE}               \
+            --line-cat=${ELECAT}                \
+            --source=${DATASRC}                 \
+            ${SRTMVERSION_TXT}                  \
+            --start-node-id=${NID}              \
+            --start-way-id=${WID}               \
+            --max-nodes-per-tile=0              \
+            --pbf                               \
+            --write-timestamp                   \
+			   --hgtdir=${HGTDIR}                  \
+            --output-prefix=./pbf/${ELEPATH}/Hoehendaten_${MAPNAME} | tee >(sed -n 's/^... file \(.*\): .*bbox.*/\1/p' >> $LOGFILE)
   
   
   # if there is already a file with the needed name, remove it
@@ -173,6 +190,26 @@ function createcontour {
   then
      echo "... renaming that to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf"
      mv ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}_lon*lat*.osm.pbf ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf
+
+     # Check if there is a license file to be copied
+     LICENSE_FILE_FULL=''
+     if [ -f  ${HGTDIR}/${LICENSE_FILE} ]
+     then
+        LICENSE_FILE_FULL=${HGTDIR}/${LICENSE_FILE}
+     elif [ -f  ${LICENSE_DIR}/${LICENSE_FILE}.${DATASRC} ]
+     then
+        LICENSE_FILE_FULL=${LICENSE_DIR}/${LICENSE_FILE}.${DATASRC}
+     elif [ -f  ${LICENSE_DIR}/${LICENSE_FILE} ]
+     then
+        LICENSE_FILE_FULL=${LICENSE_DIR}/${LICENSE_FILE}
+     fi
+     if [ -n ${LICENSE_FILE_FULL} ]
+     then
+        echo "... license file found:"
+        echo "       copying ${HGTDIR}/${LICENSE_FILE} to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license"
+        cp ${HGTDIR}/${LICENSE_FILE} ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license
+     fi
+
   else
      echo "... no output generated, failed ?"
   fi
