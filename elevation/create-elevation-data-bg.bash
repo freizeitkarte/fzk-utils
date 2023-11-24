@@ -206,7 +206,7 @@ function createcontour {
      if [ -n ${LICENSE_FILE_FULL} ]
      then
         echo "... license file found"
-        echo "... copying ${HGTDIR}/${LICENSE_FILE} to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license"
+        echo "... copying ${LICENSE_FILE_FULL} to ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license"
         cp ${LICENSE_FILE_FULL} ./pbf/${ELEPATH}/Hoehendaten_${MAPNAME}.osm.pbf.license
      fi
 
