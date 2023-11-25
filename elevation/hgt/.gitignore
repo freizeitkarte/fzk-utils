@@ -3,13 +3,13 @@ viewfinderHgtIndex_*.txt
 SRTM1/*
 SRTM1v2.1/
 SRTM1v3.0/
-SRTMv3.0.hgt/
+SRTM1v3.0.*/
 SRTM3/*
 SRTM3v3.0/
 SRTM3v2.1/
 VIEW1/*
 VIEW3/*
-SONN1/*
 SONN1/
-SONN3/*
+SONN1/*
 SONN3/
+SONN3/*
