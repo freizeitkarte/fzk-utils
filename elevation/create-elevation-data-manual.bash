@@ -336,9 +336,18 @@
 #./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_FRA+SOUTHWEST
 #./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_FRA+SOUTHWEST
 
-./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_ALPS_WEST
-./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ALPS_WEST
+#./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_ALPS_WEST
+#./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ALPS_WEST
 
-./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_ALPS_EAST
-./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ALPS_EAST
+#./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_ALPS_EAST
+#./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ALPS_EAST
+
+./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_DEU+NORTH
+./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_DEU+NORTH
+
+./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_DEU+SOUTH
+./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_DEU+SOUTH
+
+./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_ESP+
+./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ESP+
 
