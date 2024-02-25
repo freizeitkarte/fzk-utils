@@ -385,7 +385,7 @@
 # ./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ITA+NORTH
 
 ./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_ITA+SOUTH
-./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ITA+SOUTH
+# ./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_ITA+SOUTH
 
 # ./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_LTU+
 # ./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_LTU+
@@ -417,8 +417,8 @@
 # ./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_PRT+
 # ./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_PRT+
 
-# ./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_ROU+
-# ./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_ROU+
+./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_ROU+
+./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_ROU+
 
 # ./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_RUS_CENTRAL_FD+
 # ./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_RUS_CENTRAL_FD+
@@ -435,8 +435,8 @@
 # ./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_RUS+KGD
 # ./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_RUS+KGD
 
-./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_SRB+
-./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_SRB+
+# ./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_SRB+
+# ./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_SRB+
 
 # ./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_SVK+
 # ./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_SVK+
