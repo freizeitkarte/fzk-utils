@@ -247,6 +247,8 @@ done
 # Shift forward to the rest of the arguments
 shift $((OPTIND-1))
 
+# Make sure datasrc is lowercase (pyhgtmap doesn't care, but it's because of license files)
+DATASRC=`echo $DATASRC | tr '[:upper:]' '[:lower:]'`
 
 # Get the MAPNAME and set some defaults
 MAPNAME="$1"
