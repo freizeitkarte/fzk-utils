@@ -1,0 +1,79 @@
+#!/bin/sh
+
+cd
+cd fzk-mde-garmin/Freizeitkarte-Entwicklung/
+
+./mt.pl --ram=24000 --cores=8 pmd 9010
+./mt.pl --ram=24000 --cores=8 pmd 9011
+./mt.pl --ram=24000 --cores=8 pmd 9030
+./mt.pl --ram=24000 --cores=8 pmd 9800
+./mt.pl --ram=24000 --cores=8 pmd 9811
+./mt.pl --ram=24000 --cores=8 pmd 9812
+./mt.pl --ram=24000 --cores=8 pmd 9812
+./mt.pl --ram=24000 --cores=8 pmd 9813
+./mt.pl --ram=24000 --cores=8 pmd 9814
+./mt.pl --ram=24000 --cores=8 pmd 9820
+./mt.pl --ram=24000 --cores=8 pmd 9830
+./mt.pl --ram=24000 --cores=8 pmd 9850
+./mt.pl --ram=24000 --cores=8 pmd 9851
+./mt.pl --ram=24000 --cores=8 pmd 9852
+./mt.pl --ram=24000 --cores=8 pmd 9853
+./mt.pl --ram=24000 --cores=8 pmd 9854
+./mt.pl --ram=24000 --cores=8 pmd 9855
+./mt.pl --ram=24000 --cores=8 pmd 9856
+./mt.pl --ram=24000 --cores=8 pmd 9857
+./mt.pl --ram=24000 --cores=8 pmd 9858
+./mt.pl --ram=24000 --cores=8 pmd 9859
+./mt.pl --ram=24000 --cores=8 pmd 9860
+./mt.pl --ram=24000 --cores=8 pmd 9861
+./mt.pl --ram=24000 --cores=8 pmd 9862
+./mt.pl --ram=24000 --cores=8 pmd 6504
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9011
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9030
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9800
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9811
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9812
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9812
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9813
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9814
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9820
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9830
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9850
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9851
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9852
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9853
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9854
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9855
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9856
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9857
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9858
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9859
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9860
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9861
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9862
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 6504
+./mt.pl --ram=24000 --cores=8 zip 9011
+./mt.pl --ram=24000 --cores=8 zip 9030
+./mt.pl --ram=24000 --cores=8 zip 9800
+./mt.pl --ram=24000 --cores=8 zip 9811
+./mt.pl --ram=24000 --cores=8 zip 9812
+./mt.pl --ram=24000 --cores=8 zip 9812
+./mt.pl --ram=24000 --cores=8 zip 9813
+./mt.pl --ram=24000 --cores=8 zip 9814
+./mt.pl --ram=24000 --cores=8 zip 9820
+./mt.pl --ram=24000 --cores=8 zip 9830
+./mt.pl --ram=24000 --cores=8 zip 9850
+./mt.pl --ram=24000 --cores=8 zip 9851
+./mt.pl --ram=24000 --cores=8 zip 9852
+./mt.pl --ram=24000 --cores=8 zip 9853
+./mt.pl --ram=24000 --cores=8 zip 9854
+./mt.pl --ram=24000 --cores=8 zip 9855
+./mt.pl --ram=24000 --cores=8 zip 6504
+
+# ./mt.pl --ram=24000 --cores=8 pmd 9856
+# ./mt.pl --ram=24000 --cores=8 pmd 9857
+# ./mt.pl --ram=24000 --cores=8 pmd 9858
+# ./mt.pl --ram=24000 --cores=8 pmd 9859
+# ./mt.pl --ram=24000 --cores=8 pmd 9860
+# ./mt.pl --ram=24000 --cores=8 pmd 9861
+# ./mt.pl --ram=24000 --cores=8 pmd 9862

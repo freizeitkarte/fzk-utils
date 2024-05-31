@@ -1,0 +1,173 @@
+#!/bin/sh
+
+cd
+cd fzk-mde-garmin/Freizeitkarte-Entwicklung/
+
+
+
+
+./mt.pl --ram=24000 --cores=8 create 8010 # GBR_IRL
+./mt.pl --ram=24000 --cores=8 extract_osm 8010 # GBR_IRL
+./mt.pl --ram=24000 --cores=8 fetch_ele 8010 # GBR_IRL
+./mt.pl --ram=24000 --cores=8 join 8010 # GBR_IRL
+./mt.pl --ram=24000 --cores=8 split 8010 # GBR_IRL
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8010 # GBR_IRL
+
+./mt.pl --ram=24000 --cores=8 --language=de create 8020 DT36ROUTING DTRIGMARK # ALPS - de
+./mt.pl --ram=24000 --cores=8 --language=de extract_osm 8020 DT36ROUTING DTRIGMARK # ALPS - de
+./mt.pl --ram=24000 --cores=8 --language=de fetch_ele 8020 DT36ROUTING DTRIGMARK # ALPS - de
+./mt.pl --ram=24000 --cores=8 --language=de join 8020 DT36ROUTING DTRIGMARK # ALPS - de
+./mt.pl --ram=24000 --cores=8 --language=de split 8020 DT36ROUTING DTRIGMARK # ALPS - de
+./mt.pl --ram=24000 --cores=8 --language=de --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8020 DT36ROUTING DTRIGMARK # ALPS - de
+
+# ALPS - de  vor den anderen beenden, wegen Test
+./mt.pl --ram=24000 --cores=8 --language=de --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8020 DTRIGMARK DT36ROUTING # ALPS - de
+./mt.pl --language=de zip 8020 # ALPS - de
+
+./mt.pl --ram=24000 --cores=8 --language=en create 8020 DT36ROUTING DTRIGMARK # ALPS - en
+./mt.pl --ram=24000 --cores=8 --language=en extract_osm 8020 DT36ROUTING DTRIGMARK # ALPS - en
+./mt.pl --ram=24000 --cores=8 --language=en fetch_ele 8020 DT36ROUTING DTRIGMARK # ALPS - en
+./mt.pl --ram=24000 --cores=8 --language=en join 8020 DT36ROUTING DTRIGMARK # ALPS - en
+./mt.pl --ram=24000 --cores=8 --language=en split 8020 DT36ROUTING DTRIGMARK # ALPS - en
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8020 DT36ROUTING DTRIGMARK # ALPS - en
+
+./mt.pl --ram=24000 --cores=8 create 8030 # DNK_NOR_SWE_FIN
+./mt.pl --ram=24000 --cores=8 extract_osm 8030 # DNK_NOR_SWE_FIN
+./mt.pl --ram=24000 --cores=8 fetch_ele 8030 # DNK_NOR_SWE_FIN
+./mt.pl --ram=24000 --cores=8 join 8030 # DNK_NOR_SWE_FIN
+./mt.pl --ram=24000 --cores=8 split 8030 # DNK_NOR_SWE_FIN
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8030 # DNK_NOR_SWE_FIN
+
+./mt.pl --ram=24000 --cores=8 create 8040 # BEL_NLD_LUX
+./mt.pl --ram=24000 --cores=8 extract_osm 8040 # BEL_NLD_LUX
+./mt.pl --ram=24000 --cores=8 fetch_ele 8040 # BEL_NLD_LUX
+./mt.pl --ram=24000 --cores=8 join 8040 # BEL_NLD_LUX
+./mt.pl --ram=24000 --cores=8 split 8040 # BEL_NLD_LUX
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8040 # BEL_NLD_LUX
+
+./mt.pl --ram=24000 --cores=8 create 8050 # ESP_PRT
+./mt.pl --ram=24000 --cores=8 extract_osm 8050 # ESP_PRT
+./mt.pl --ram=24000 --cores=8 fetch_ele 8050 # ESP_PRT
+./mt.pl --ram=24000 --cores=8 join 8050 # ESP_PRT
+./mt.pl --ram=24000 --cores=8 split 8050 # ESP_PRT
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8050 # ESP_PRT
+
+./mt.pl --ram=24000 --cores=8 create 8080 # BALKAN
+./mt.pl --ram=24000 --cores=8 extract_osm 8080 # BALKAN
+./mt.pl --ram=24000 --cores=8 fetch_ele 8080 # BALKAN
+./mt.pl --ram=24000 --cores=8 join 8080 # BALKAN
+./mt.pl --ram=24000 --cores=8 split 8080 # BALKAN
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8080 # BALKAN
+
+./mt.pl --ram=24000 --cores=8 create 7756 # CHE+
+./mt.pl --ram=24000 --cores=8 extract_osm 7756
+./mt.pl --ram=24000 --cores=8 fetch_ele 7756
+./mt.pl --ram=24000 --cores=8 join 7756
+./mt.pl --ram=24000 --cores=8 split 7756
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 7756
+
+./mt.pl --ram=24000 --cores=8 create 7040 # AUT+
+./mt.pl --ram=24000 --cores=8 extract_osm 7040
+./mt.pl --ram=24000 --cores=8 fetch_ele 7040
+./mt.pl --ram=24000 --cores=8 join 7040
+./mt.pl --ram=24000 --cores=8 split 7040
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 7040
+
+./mt.pl --ram=24000 --cores=8 create 7276 # DEU+
+./mt.pl --ram=24000 --cores=8 extract_osm 7276
+./mt.pl --ram=24000 --cores=8 fetch_ele 7276
+./mt.pl --ram=24000 --cores=8 join 7276
+./mt.pl --ram=24000 --cores=8 split 7276
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 7276
+
+./mt.pl --ram=24000 --cores=8 --language=en create 8060 DT36ROUTING DTRIGMARK # PYR - en
+./mt.pl --ram=24000 --cores=8 --language=en extract_osm 8060 DT36ROUTING DTRIGMARK # PYR - en
+./mt.pl --ram=24000 --cores=8 --language=en fetch_ele 8060 DT36ROUTING DTRIGMARK # PYR - en
+./mt.pl --ram=24000 --cores=8 --language=en join 8060 DT36ROUTING DTRIGMARK # PYR - en
+./mt.pl --ram=24000 --cores=8 --language=en split 8060 DT36ROUTING DTRIGMARK # PYRS - en
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8060 DT36ROUTING DTRIGMARK # PYRS - en
+
+./mt.pl --ram=24000 --cores=8 --language=en create 8070 DT36ROUTING DTRIGMARK # CARP - en
+./mt.pl --ram=24000 --cores=8 --language=en extract_osm 8070 DT36ROUTING DTRIGMARK # CARP - en
+./mt.pl --ram=24000 --cores=8 --language=en fetch_ele 8070 DT36ROUTING DTRIGMARK # CARP - en
+./mt.pl --ram=24000 --cores=8 --language=en join 8070 DT36ROUTING DTRIGMARK # CARP - en
+./mt.pl --ram=24000 --cores=8 --language=en split 8070 DT36ROUTING DTRIGMARK # CARP - en
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8070 DT36ROUTING DTRIGMARK # CARP - en
+
+./mt.pl --ram=24000 --cores=8 --language=pl create 8070 DT36ROUTING DTRIGMARK # CARP - pl
+./mt.pl --ram=24000 --cores=8 --language=pl extract_osm 8070 DT36ROUTING DTRIGMARK # CARP - pl
+./mt.pl --ram=24000 --cores=8 --language=pl fetch_ele 8070 DT36ROUTING DTRIGMARK # CARP - pl
+./mt.pl --ram=24000 --cores=8 --language=pl join 8070 DT36ROUTING DTRIGMARK # CARP - pl
+./mt.pl --ram=24000 --cores=8 --language=pl split 8070 DT36ROUTING DTRIGMARK # CARP - pl
+./mt.pl --ram=24000 --cores=8 --language=pl --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 8070 DT36ROUTING DTRIGMARK # CARP - pl
+
+
+./mt.pl --ram=24000 --cores=8 create 7250 # FRA+
+./mt.pl --ram=24000 --cores=8 extract_osm 7250
+./mt.pl --ram=24000 --cores=8 fetch_ele 7250
+./mt.pl --ram=24000 --cores=8 join 7250
+./mt.pl --ram=24000 --cores=8 split 7250
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 7250
+
+./mt.pl --ram=24000 --cores=8 --language=en create 7250 # FRA+
+./mt.pl --ram=24000 --cores=8 --language=en extract_osm 7250
+./mt.pl --ram=24000 --cores=8 --language=en fetch_ele 7250
+./mt.pl --ram=24000 --cores=8 --language=en join 7250
+./mt.pl --ram=24000 --cores=8 --language=en split 7250
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 7250
+
+./mt.pl --ram=24000 --cores=8 create 7380 # ITA+
+./mt.pl --ram=24000 --cores=8 extract_osm 7380
+./mt.pl --ram=24000 --cores=8 fetch_ele 7380
+./mt.pl --ram=24000 --cores=8 join 7380
+./mt.pl --ram=24000 --cores=8 split 7380
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 7380
+
+./mt.pl --ram=24000 --cores=8 --language=en create 7380 # ITA+
+./mt.pl --ram=24000 --cores=8 --language=en extract_osm 7380
+./mt.pl --ram=24000 --cores=8 --language=en fetch_ele 7380
+./mt.pl --ram=24000 --cores=8 --language=en join 7380
+./mt.pl --ram=24000 --cores=8 --language=en split 7380
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 build 7380
+
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8020 DTRIGMARK DT36ROUTING # ALPS - en
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8060 DTRIGMARK DT36ROUTING # PYR - en
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8070 DTRIGMARK DT36ROUTING # CARP - en
+./mt.pl --ram=24000 --cores=8 --language=pl --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8070 DTRIGMARK DT36ROUTING # CARP - pl
+
+
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8030 # DNK_NOR_SWE_FIN
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8040 # BEL_NLD_LUX
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8050 # ESP_PRT
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8010 # GBR_IRL
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 8080 # BALKAN
+
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 7756 # CHE
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 7040 # AUT
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 7276 # DEU
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 7380 # ITA+
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 7380 # ITA+ - en
+./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 7250 # FRA+
+./mt.pl --ram=24000 --cores=8 --language=en --dempath=/data/dem/hgt/VIEW3 --demtype=3 bam 7250 # FRA+ - en
+
+./mt.pl zip 8010 # GBR_IRL
+./mt.pl zip 8080 # BALKAN
+./mt.pl --language=en zip 8020 # ALPS - en
+./mt.pl --language=en zip 8060 # PYR - en
+./mt.pl --language=en zip 8070 # CARP - en
+./mt.pl --language=pl zip 8070 # CARP - pl
+./mt.pl zip 8030 # DNK_NOR_SWE_FIN
+./mt.pl zip 8040 # BEL_NLD_LUX
+./mt.pl zip 8050 # ESP_PRT
+
+./mt.pl zip 7756 # CHE
+./mt.pl zip 7040 # AUT
+./mt.pl zip 7276 # DEU
+./mt.pl zip 7380 # ITA+
+./mt.pl --language=en zip 7380 # ITA+ - en
+./mt.pl zip 7250 # FRA+
+./mt.pl --language=en zip 7250 # FRA+ - en
+
+./mt.pl alltypfiles
+./mt.pl replacetyp
+
