@@ -1,62 +1,64 @@
 #!/bin/sh
 
+# DEM PATHS
+DEM_SONN1=/data/dem/hgt/SONN1
+DEM_SRTM1=/data/dem/hgt/SRTM1v3.0.hgt
+DEM_ALOS1=/data/dem/hgt/ALOS1.hgt
+
 cd
 cd fzk-mde-garmin/Freizeitkarte-Entwicklung/
 
-./mt.pl --ram=24000 --cores=8 pmd 9010
-./mt.pl --ram=24000 --cores=8 pmd 9011
-./mt.pl --ram=24000 --cores=8 pmd 9030
-./mt.pl --ram=24000 --cores=8 pmd 9800
-./mt.pl --ram=24000 --cores=8 pmd 9811
-./mt.pl --ram=24000 --cores=8 pmd 9812
-./mt.pl --ram=24000 --cores=8 pmd 9812
-./mt.pl --ram=24000 --cores=8 pmd 9813
-./mt.pl --ram=24000 --cores=8 pmd 9814
-./mt.pl --ram=24000 --cores=8 pmd 9820
-./mt.pl --ram=24000 --cores=8 pmd 9830
-./mt.pl --ram=24000 --cores=8 pmd 9850
-./mt.pl --ram=24000 --cores=8 pmd 9851
-./mt.pl --ram=24000 --cores=8 pmd 9852
-./mt.pl --ram=24000 --cores=8 pmd 9853
-./mt.pl --ram=24000 --cores=8 pmd 9854
-./mt.pl --ram=24000 --cores=8 pmd 9855
-./mt.pl --ram=24000 --cores=8 pmd 9856
-./mt.pl --ram=24000 --cores=8 pmd 9857
-./mt.pl --ram=24000 --cores=8 pmd 9858
-./mt.pl --ram=24000 --cores=8 pmd 9859
-./mt.pl --ram=24000 --cores=8 pmd 9860
-./mt.pl --ram=24000 --cores=8 pmd 9861
-./mt.pl --ram=24000 --cores=8 pmd 9862
-./mt.pl --ram=24000 --cores=8 pmd 6504
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9011
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9030
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9800
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9811
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9812
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9812
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9813
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9814
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9820
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9830
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9850
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9851
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9852
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9853
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9854
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9855
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9856
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9857
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9858
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9859
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9860
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9861
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 9862
-./mt.pl --ram=24000 --cores=8 --dempath=/data/dem/hgt/VIEW3 --demtype=3 bml 6504
+# ./mt.pl --ram=24000 --cores=8 pmd 9010
+./mt.pl --ram=24000 --cores=8 pmd 9011 # RUS
+./mt.pl --ram=24000 --cores=8 pmd 9030 # RUS_CENTRAL_FD+
+./mt.pl --ram=24000 --cores=8 pmd 9800 # CENTRAL_AMERICA
+./mt.pl --ram=24000 --cores=8 pmd 9811 # US_NORTHEAST
+./mt.pl --ram=24000 --cores=8 pmd 9812 # US_PACIFIC
+./mt.pl --ram=24000 --cores=8 pmd 9813 # US_SOUTH
+./mt.pl --ram=24000 --cores=8 pmd 9814 # US_WEST
+./mt.pl --ram=24000 --cores=8 pmd 9820 # US_ALASKA
+./mt.pl --ram=24000 --cores=8 pmd 9830 # US_HAWAII
+./mt.pl --ram=24000 --cores=8 pmd 9850 # CAN_AB
+./mt.pl --ram=24000 --cores=8 pmd 9851 # CAN_BC
+./mt.pl --ram=24000 --cores=8 pmd 9852 # CAN_MB
+./mt.pl --ram=24000 --cores=8 pmd 9853 # CAN_NB
+./mt.pl --ram=24000 --cores=8 pmd 9854 # CAN_NL
+./mt.pl --ram=24000 --cores=8 pmd 9855 # CAN_NS
+./mt.pl --ram=24000 --cores=8 pmd 9856 # CAN_NT
+./mt.pl --ram=24000 --cores=8 pmd 9857 # CAN_NU
+./mt.pl --ram=24000 --cores=8 pmd 9858 # CAN_ON
+./mt.pl --ram=24000 --cores=8 pmd 9859 # CAN_PE
+./mt.pl --ram=24000 --cores=8 pmd 9860 # CAN_QC
+./mt.pl --ram=24000 --cores=8 pmd 9861 # CAN_SK
+./mt.pl --ram=24000 --cores=8 pmd 9862 # CAN_YT
+./mt.pl --ram=24000 --cores=8 pmd 6504 # MAR
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_ALOS1} --demtype=1 bml 9011 # RUS
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9030 # RUS_CENTRAL_FD+
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9800 # CENTRAL_AMERICA
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9811 # US_NORTHEAST
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9812 # US_PACIFIC
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9813 # US_SOUTH
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9814 # US_WEST
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_ALOS1} --demtype=1 bml 9820 # US_ALASKA
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9830 # US_HAWAII
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9850 # CAN_AB
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9851 # CAN_BC
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9852 # CAN_MB
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9853 # CAN_NB
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9854 # CAN_NL
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9855 # CAN_NS
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_ALOS1} --demtype=1 bml 9856 # CAN_NT
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_ALOS1} --demtype=1 bml 9857 # CAN_NU
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9858 # CAN_ON
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9859 # CAN_PE
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9860 # CAN_QC
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 9861 # CAN_SK
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_ALOS1} --demtype=1 bml 9862 # CAN_YT
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bml 6504 # MAR
 ./mt.pl --ram=24000 --cores=8 zip 9011
 ./mt.pl --ram=24000 --cores=8 zip 9030
 ./mt.pl --ram=24000 --cores=8 zip 9800
 ./mt.pl --ram=24000 --cores=8 zip 9811
-./mt.pl --ram=24000 --cores=8 zip 9812
 ./mt.pl --ram=24000 --cores=8 zip 9812
 ./mt.pl --ram=24000 --cores=8 zip 9813
 ./mt.pl --ram=24000 --cores=8 zip 9814
