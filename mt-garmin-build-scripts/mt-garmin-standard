@@ -398,7 +398,7 @@ cd fzk-mde-garmin/Freizeitkarte-Entwicklung/
 ./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SONN1} --demtype=1 bam 8040 # BEL_NLD_LUX
 ./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SONN1} --demtype=1 bam 8050 # ESP_PRT
 ./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SONN1} --demtype=1 bam 8010 # GBR_IRL
-./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM11} --demtype=1 bam 8080 # BALKAN
+./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SRTM1} --demtype=1 bam 8080 # BALKAN
 
 ./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SONN1} --demtype=1 bam 7756 # CHE+
 ./mt.pl --ram=24000 --cores=8 --dempath=${DEM_SONN1} --demtype=1 bam 7040 # AUT+
