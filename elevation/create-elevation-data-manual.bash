@@ -480,6 +480,9 @@
 # ./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_CHE
 # ./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_CHE
 
-./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_LUX
-./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_LUX
+# ./create-elevation-data-bg.bash -e "20,100,500" -s sonn1 Freizeitkarte_LUX
+# ./create-elevation-data-bg.bash -e "10,100,200" -s sonn1 Freizeitkarte_LUX
+
+./create-elevation-data-bg.bash -e "20,100,500" -s srtm1 Freizeitkarte_MUS
+./create-elevation-data-bg.bash -e "10,100,200" -s srtm1 Freizeitkarte_MUS
 
